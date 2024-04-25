@@ -1,0 +1,18 @@
+<div class="card" style="width: 18rem; margin: 5px">
+    {% if product.image %}
+        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+    {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.description | truncatewords:13 }}</p>
+    <p class="card-text"><i>₦</i> {{ product.price }}</p>
+{#    <p class="card-text"><i>$</i> {{ product.price }}</p>#}
+    <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View Product</a>
+   <form method="POST" action="{% url "add_to_cart"  %}" style="margin-left: 50%; margin-top: -15.5%">
+        {% csrf_token %}
+        <input type="hidden" name = "product_id" value="{{ product.id }}">
+
+       <button type="submit" class="btn btn-success">Add to cart</button>
+ </form>
+  </div>
+</div>

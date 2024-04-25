@@ -1,0 +1,61 @@
+{% extends "loggedin.html" %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+
+    <div class="col">
+        <table class="table table-responsive-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ref</th>
+          <th scope="col">Price</th>
+          <th scope="col">Items</th>
+
+        </tr>
+      </thead>
+
+            {% for order in  orders %}
+
+          <tbody>
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td><a href="{{ order.id }}">{{ order.id }}</a></td>
+              <td><i>₦</i> {{ order.total }}</td>
+              <td>{{ order.item_count }}</td>
+
+
+            </tr>
+
+          </tbody>
+
+
+
+    {% endfor %}
+
+
+
+
+        </table>
+      </div>
+
+</div>
+
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+

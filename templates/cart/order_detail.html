@@ -1,0 +1,71 @@
+{% extends "loggedin.html" %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+
+    <div class="col">
+        <table class="table table-responsive-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Items</th>
+          <th scope="col">Total</th>
+
+        </tr>
+      </thead>
+
+
+
+          <tbody>
+            {% for packet in  packets %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ packet.product }}</td>
+              <td><i>₦</i> {{ packet.product.price }}</td>
+
+              <td>{{ packet.count }}</td>
+                <td><i>₦</i> {{ packet.sub_total }}</td>
+
+            </tr>
+            {% endfor %}
+          <tr class="bg-dark" style="color: white">
+              <td>Total</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><i>₦ </i>{{ order.total }}</td>
+          </tr>
+          </tbody>
+
+
+
+
+
+
+
+
+        </table>
+      </div>
+
+</div>
+
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+

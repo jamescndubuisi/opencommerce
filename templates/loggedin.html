@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+
+{% block nav %}
+ <ul class="navbar-nav mr-auto" >
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'products' %}"> <i class="fa fa-id-badge">Products</i></a>
+        </li>
+         <li class="nav-item">
+                <a class="nav-link " href="{% url 'cart' %}"><i class="fa fa-shopping-cart"> My Cart </i></a>
+            </li>
+         <li class="nav-item">
+                <a class="nav-link " href="{% url 'order_list' %}"><i class="fa fa-list-ul"> My Orders </i></a>
+            </li>
+
+        </ul>
+
+ <ul class="navbar-nav my-2 my-lg-0">
+ <form method="get" action="{% url "search"  %}">
+
+          <div class="input-group">
+    {#      <input type="search" name="q" class="form-control rounded" placeholder="Search" value="{{ request.GET.q }}" aria-label="Search"#}
+          <input type="search" name="q" class="form-control rounded" placeholder="Search" value="" aria-label="Search"
+            aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-outline-primary"><i class="fa fa-search"></i></button>
+    </div>
+ </form>
+
+ </ul>
+
+    <ul class="navbar-nav my-2 my-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+{% block content %}
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load paystack %}
+{%  block title %}Payment{% endblock %}
+
+{% block description %}
+
+{% endblock %}
+
+{% block og-url %}
+
+{% endblock %}
+
+{% block og-title %}
+
+{% endblock %}
+
+{% block og-description %}
+
+{% endblock %}
+
+{% block og-image %}
+
+{% endblock %}
+
+
+
+ {% block config %}
+<style>
+#django-paystack-button{
+    border-radius: 30px;
+
+}
+
+</style>
+ {% endblock %}
+{% block content %}
+
+{# put the payment details here before the button#}
+    {{ data }}
+{% paystack_button amount=3000 email=user button_class="btn btn-success " %}
+
+{% endblock %}

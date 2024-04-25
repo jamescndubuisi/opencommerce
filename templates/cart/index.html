@@ -1,0 +1,105 @@
+{% extends "loggedin.html" %}
+{% load static %}
+{% load paystack %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+ {% block config %}
+<style>
+#django-paystack-button{
+    border-radius: 30px;
+
+}
+
+</style>
+ {% endblock %}
+{% block content %}
+<div class="container">
+<div class="row">
+
+    <div class="col">
+        <table class="table table-responsive-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Add</th>
+          <th scope="col">Remove</th>
+        </tr>
+      </thead>
+
+            {% for packet in  packets %}
+
+          <tbody>
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ packet.product.title }}</td>
+              <td>₦ {{ packet.sub_total }}</td>
+              <td>{{ packet.count }}</td>
+                <td>
+                    <form method="POST" action="{% url "add_to_cart"  %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="product_id" value="{{ packet.product.id }}">
+                        <button class="btn btn-success" type="submit">add</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{% url "remove_from_cart"  %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="remove">
+                        <input type="hidden" name="packet" value="{{ packet.id }}">
+                        <button class="btn btn-danger" type="submit">remove</button>
+                     </form>
+                </td>
+            </tr>
+
+          </tbody>
+
+{% empty %}
+               <tbody> <tr> <th scope="row"> Message</th>
+              <td>Cart</td>
+              <td>is</td>
+              <td>Empty</td>
+              <td>Start</td>
+              <td>Shopping</td>
+
+               </tr>
+               </tbody>
+
+
+    {% endfor %}
+         <tr class="bg-dark" style="color: white">
+      <th scope="row" ></th>
+             <td>Total</td>
+             <td>₦ {{ cart.total }}</td>
+             <td>{{ cart.item_count }}</td>
+             <td><a href="{% url "products" %}">Keep Shopping</a></td>
+             <td>{# put the payment details here before the button#}
+   {% if cart.total > 0 and cart.item_count > 0 %}
+   {% paystack_button amount=cart.total email=user ref=unique_id button_class="btn btn-success " %}
+   {% endif %}
+
+</td>
+
+    </tr>
+
+        </table>
+      </div>
+
+</div>
+
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+
