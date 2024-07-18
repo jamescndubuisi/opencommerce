@@ -50,7 +50,7 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     item_count = models.IntegerField(default=0)
     paid = models.BooleanField(default=False)
-    temp_id = models.CharField(default=uuid.uuid4, null=True, blank=True)
+    temp_id = models.UUIDField(default=uuid.uuid4, editable=True, unique=True)
     objects = CartManager()
 
     def check_and_delete(self, sender, instance, created, **kwargs):
@@ -102,6 +102,7 @@ def handle_packet_save(sender, instance, created, **kwargs):
     instance.check_and_delete(sender, instance, created)
 
 
+# @receiver(post_save, sender=Cart)
 # @receiver(post_save, sender=Cart)
 # def handle_cart_save(sender, instance, created, **kwargs):
 #     instance.check_and_delete(sender, instance, created)

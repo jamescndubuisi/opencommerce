@@ -51,7 +51,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 CSRF_TRUSTED_ORIGINS = ['https://ecommerce.stardusts.org',"http://localhost", "http://127.0.0.1", f"http://{env('SERVER_IP')}"]
 
 ALLOWED_HOSTS = ["ecommerce.stardusts.org", "localhost", "127.0.0.1", env('SERVER_IP')]
