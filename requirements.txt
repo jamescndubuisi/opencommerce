@@ -20,7 +20,7 @@ django-cors-headers==3.13.0
 django-crispy-forms==1.14.0
 django-datadog-logger==0.5.1
 django-environ==0.11.2
-djangorestframework==3.14.0
+djangorestframework==3.15.2
 envier==0.4.0
 exceptiongroup==1.0.0rc9
 gunicorn==22.0.0
