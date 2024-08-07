@@ -14,7 +14,7 @@ click-repl==0.2.0
 cloudinary==1.36.0
 colorama==0.4.5
 ddsketch==2.0.4
-Django==5.0.4
+Django==5.0.8
 django-cloudinary-storage==0.3.0
 django-cors-headers==3.13.0
 django-crispy-forms==1.14.0
