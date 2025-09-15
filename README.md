@@ -126,4 +126,4 @@ Feel free to submit issues and pull requests to improve this starter template.
 
 ## License
 
-[Add your license here]
+MIT
