@@ -7,11 +7,11 @@
 
 {% block config %}
 <style>
-.form-control{
-    width: 60%;
-}
+  .auth-card { max-width: 640px; margin: 32px auto; padding: 28px; border-radius: 12px; }
+  .auth-card .form-control { border-radius: 8px; }
 </style>
 {% endblock %}
+
 
 {% block nav %}
     <ul class="navbar-nav mr-auto">
@@ -26,14 +26,18 @@
     </ul>
 
 {% endblock %}
-{% block content %}
-    <h1>{{ title }}</h1>
-    <form method="post">
-    {% csrf_token %}
-    {{ form| crispy }}
-<br>
-    <button type="submit" class="btn btn-success">Submit</button>
-
+{{% block content %}
+<div class="card card-soft auth-card">
+  <div class="card-body">
+    <h3 class="text-center">{{ title }}</h3>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-success btn-pill">Create account</button>
+      </div>
     </form>
-
-{% endblock content %}
+    <p class="mt-3 text-center small">Already registered? <a href="{% url 'log_in' %}">Login</a></p>
+  </div>
+</div>
+{% endblock %}

@@ -2,9 +2,11 @@ import datetime
 from django import template
 from django.shortcuts import reverse
 from django.utils.html import format_html
-from .. import settings
+from django.conf import settings
 from django.utils.crypto import get_random_string
 from paystack.utils import get_js_script
+import uuid
+
 
 register = template.Library()
 
@@ -21,11 +23,14 @@ def paystack_button(
     email=None,
     redirect_url=None,
 ):
+
+    _ref_length = getattr(settings, "PAYSTACK_REF_LENGTH", 12)
+
     new_ref = ref
     new_redirect_url = redirect_url
     new_amount = int(amount) * 100
-    if not new_ref:
-        new_ref = get_random_string().upper()
+    # if not new_ref:
+    #     new_ref = get_random_string().upper()
     if not new_redirect_url:
         new_redirect_url = "{}?amount={}".format(
             reverse("paystack:verify_payment", args=[new_ref]), new_amount

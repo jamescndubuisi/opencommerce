@@ -2,57 +2,66 @@
 {% load static %}
 
 {% block title %}
-{{ title }}
+    {{ title }}
 {% endblock %}
 
+<table class="table table-borderless">
+    <thead>
+    <tr class="text-muted small">
+        <th>#</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th class="text-right">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for packet in packets %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ packet.product }}</td>
+            <td>₦ {{ packet.product.price }}</td>
+            <td>{{ packet.count }}</td>
+            <td class="text-right">₦ {{ packet.sub_total }}</td>
+        </tr>
+    {% endfor %}
+    <tr class="border-top">
+        <td colspan="4" class="text-right font-weight-bold">Grand Total</td>
+        <td class="text-right font-weight-bold">₦ {{ order.total|default:cart.total }}</td>
+    </tr>
+    </tbody>
+</table>
 
 
 {% block content %}
-<div class="container">
-<div class="row">
+    <div class="container">
+        <div class="row">
 
-    <div class="col">
-        <table class="table table-responsive-sm">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Ref</th>
-          <th scope="col">Price</th>
-          <th scope="col">Items</th>
+            <div class="col">
+                <table class="table table-responsive-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ref</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Items</th>
+                    </tr>
+                    </thead>
 
-        </tr>
-      </thead>
-
-            {% for order in  orders %}
-
-          <tbody>
-            <tr>
-              <th scope="row">{{ forloop.counter }}</th>
-              <td><a href="{{ order.id }}">{{ order.id }}</a></td>
-              <td><i>₦</i> {{ order.total }}</td>
-              <td>{{ order.item_count }}</td>
-
-
-            </tr>
-
-          </tbody>
-
-
-
-    {% endfor %}
-
-
-
-
-        </table>
-      </div>
-
-</div>
-
-
-
-</div>
-
+                    {% for order in  orders %}
+                        <tbody>
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><a href="{{ order.id }}">{{ order.id }}</a></td>
+                            <td><i>₦</i> {{ order.total }}</td>
+                            <td>{{ order.item_count }}</td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

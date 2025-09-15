@@ -4,9 +4,9 @@ from .models import Product
 from cart.models import Cart
 # Create your views here.
 
+
 class ProductListView(ListView):
     queryset = Product.objects.all()
-
 
     def get_context_data(self, *args, **kwargs):
         Cart.objects.new_or_get(self.request)
