@@ -165,10 +165,27 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'log_in'
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = "/media/"
-STATIC_ROOT = os.path.join(BASE_DIR, "statics")
+# STATIC_ROOT = os.path.join(BASE_DIR, "statics")
+
+STORAGES = {
+    # default storage used for uploaded files (FileField, ImageField)
+    "default": {
+        # "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        # either use MEDIA_ROOT or specify location explicitly:
+        # "OPTIONS": {"location": str(MEDIA_ROOT)},
+    },
+    # storage used by 'collectstatic' and staticfiles finders (if you override)
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+
+
 
 DATABASES = {
     "default": {
